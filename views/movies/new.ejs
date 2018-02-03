@@ -1,0 +1,96 @@
+<% include ../partials/header %>
+
+
+<link rel="stylesheet" type="text/css" href="/newMovie.css">
+
+<div id="newForm" class="ui main text container segment">
+    <div class="ui large inverted header">Add new movie</div>
+    
+    <form class="ui form" action="/movies" method="POST">
+        <div class="field">
+	    <div class="ui inverted transparent input">
+            <input class="inverted" type="text" name="movie[title]" placeholder="Title">
+	    </div>
+        </div>
+
+        <div class="ui inverted divider"></div>        
+        <div class="field">
+            <div class="ui inverted transparent input">
+            <input type="text" name="movie[image]" placeholder="Thumbnail image">
+            </div>
+        </div>
+
+<div class="ui inverted divider"></div>
+
+                
+        <div class="field">
+            <div class="ui inverted transparent input">
+            <input type="text" name="movie[genre]" placeholder="Genre">
+	    </div>
+        </div>
+
+<div class="ui inverted divider"></div>
+        
+        <div class="two fields">
+            <div class="field">
+                <div class="ui inverted transparent input">
+                <input type="text" name="movie[rating]" placeholder="IMDB Rating">
+		</div>
+            </div>
+            
+            <div class="field">
+                <div class="ui inverted transparent input">
+                <input type="text" name="movie[director]" placeholder="Director">
+		</div>
+            </div>
+        </div>
+
+<div class="ui inverted divider"></div>
+        
+        <div class="field">
+            <div class="ui inverted transparent input">
+            <input type="text" name="movie[watchPath]" placeholder="Path to movie | home/movies/...">
+	    </div>
+        </div>
+
+<div class="ui inverted divider"></div>
+
+	<div class="two fields">
+	    <div class="field">
+		<label>File to upload</label>
+		<div class="ui inverted transparent input">
+	        <input type="file" name="movie[fileUpload]" placeholder="Movie file to upload">
+		</div>
+	    </div>
+	    
+	    <div class="field">
+	        <label class="info">Disk usage [ <%=diskSize[9]%> / <%=diskSize[7]%> ]</label>
+		<div class="ui teal progress" id="diskUsage">
+  		    <div class="bar">
+    		        <div class="progress"></div>
+                    </div>
+                </div>
+        </div>
+	</div>
+
+<div class="ui inverted divider"></div>
+        
+        <div class="field">
+            <div class="ui inverted transparent input">
+            <textarea  name="movie[plot]" placeholder="Plot..."></textarea>
+	    </div>
+        </div>
+        <input class="ui violet inverted button" type="submit">
+    </form>
+</div>
+
+
+<script>
+    <% if(diskSize[13] == undefined) { %>
+        $('#diskUsage').progress({percent: 0});
+    <% } else { %>
+        $('#diskUsage').progress({percent: <%=diskSize[13].replace(/\%/g,'')%>});
+    <% } %>
+</script>
+
+<% include ../partials/footer %>

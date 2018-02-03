@@ -1,0 +1,74 @@
+<% include partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/movies.css">
+
+
+   <div class="ui main text container">
+   	<div class="ui huge inverted header">Movies in collection</div>
+
+<div class="ui four column grid">
+    <div class="row">
+	<div class="column">
+   		<a id="addButton" class="ui left floated inverted button mini green" href="/movies/new">Add new movie</a>
+	</div>
+	<div class="column"></div>
+	<div class="column"></div>
+	<div class="column">
+                <div class="ui inverted mini transparent icon input">
+   		<form action="/movies" method="GET">
+   			<div class="ui mini icon input">
+  				<input id="searchDB" name="search" type="text" placeholder="Search Database...">
+  			  		<button class="ui inverted icon mini button">
+    		      		<i class="search icon"></i>
+              		</button>
+			</div>
+		</form>
+		</div>
+	</div>
+</div>
+</div>
+		
+    <div id="movieItemBorder" class="ui top attached segment">
+<div class="ui divided items">
+	<%if(movies.length == 0) { %>
+	<div class="ui divided items">
+		<div class="item">
+			<p>No results found!</p>
+		</div>
+	</div>
+	<% } else { %>
+	<% movies.forEach(function(movie){ %>
+	 <div id="movieItem" class="item">
+	    <div class="image">
+	      <img src="<%=movie.image %>">
+	    </div>
+	    <div class="content">
+	      <h4><a class="inverted header" href="/movies/<%=movie._id%>"><%= movie.title %></a></h4>
+	      <div class="meta">
+                        <p class="info"><strong class="strongInfo">Genre: </strong><%= movie.genre%></p>
+                        <p class="info"><strong class="strongInfo">Rated: </strong><%= movie.r%></p>
+                        <p class="info"><strong class="strongInfo">IMDB Score: </strong><%= movie.rating %></p>
+                        <p class="info"><strong class="strongInfo">Director: </strong><%= movie.director %></p>
+                        <p class="info"><strong class="strongInfo">Plot: </strong><%= movie.plot.substring(0,250) + "..." %></p>
+	      </div>
+	      <div class="description info">
+	        <p><%- movie.storyline %></p>
+	      </div>
+	      <div class="extra">
+	        <form id="more" action="/movies/<%=movie._id %>">
+	        	<button class="ui inverted right floated button mini violet button">More</button>
+	        </form>
+	        <% if(currentUser && movie.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin === true) { %>
+		        <form id="delete" action="/movies/<%=movie._id%>?_method=DELETE" method="POST">
+	                <button class="ui inverted right floated button mini red button">X</button>
+	            </form>
+	        <% } %>
+	      </div>
+	    </div>
+	  </div>
+	<% }); %>
+	<% } %>
+</div>
+</div>
+
+<% include partials/footer %>

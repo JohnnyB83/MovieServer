@@ -1,0 +1,63 @@
+<% include ../partials/header %>
+
+            <%if(resultsData != 'null') { %>
+            <% if(sort == 'latest') { %>
+            <% resultsData.sort(function(a, b) {return b.year - a.year}); %>
+            <% } else if(sort == 'oldest') { %>
+            <% resultsData.sort(function(a, b) {return a.year - b.year});%>
+            <% } else if(sort == 'IMDB') { %>
+            <% resultsData.sort(function(a, b) {return b.rating - a.rating}); }%>
+            
+   <div class="ui main text container">
+   	<div class="ui huge header">Movie Results</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% resultsData.forEach(function(movie) { %>
+            <div class="item">
+                <div class="image">
+                    <% if(movie.poster.thumb == "") { %>
+                        <img src="http://www.leveragelms.com/www/market/images/no_image.png">
+                    <% } else { %>
+                        <img src=<%=movie.poster.thumb%>>
+                    <% } %>
+                </div>
+                <div class="content">
+                    <% var link = "http:\/\/imdb.com/title/" + movie.imdb_id%>
+                    <a class="header" href=<%= link %>><%= movie.title %></a> - <%=movie.year%>
+                    <div class="description">
+                        <p><strong>Plot: </strong><%= movie['description'] %></p>
+                    </div>
+                    <div class="meta">
+                        <p><strong>Genre: </strong><%= movie.genre%></p>
+                        <p><strong>Rated: </strong><%= movie.content_rating%></p>
+                        <p><strong>IMDB Score: </strong><%= movie.rating%></p>
+                        <p><strong>Director: </strong><%= movie.director %></p>
+                        <p><strong>Starring: </strong><%= movie.stars%></p>
+                        <p><strong>Run time: </strong><%= movie['length']%></p>
+                        <button class="ui right floated basic button small purple">More</button>
+                        <form action="/movies" method="POST">
+                            <input type="hidden" name="movie[title]" value="<%= movie.title %>">
+                            <input type="hidden" name="movie[year]" value="<%= movie.year %>">
+                            <input type="hidden" name="movie[image]" value="<%= movie.poster.thumb %>">
+                            <input type="hidden" name="movie[genre]" value="<%= movie.genre %>">
+                            <input type="hidden" name="movie[rating]" value="<%= movie.content_rating %>">
+                            <input type="hidden" name="movie[director]" value="<%= movie.director %>">
+                            <input type="hidden" name="movie[starring]" value="<%= movie.stars %>">
+                            <input type="hidden" name="movie[runtime]" value="<%= movie['length'] %>">
+                            <input type="hidden" name="movie[IMDBScore]" value="<%= movie.rating %>">
+                            <input type="hidden" name="movie[plot]" value="<%= movie.storyline%>">
+                            <button class="ui right floated basic button small green"><strong>+</strong></button>
+                        </form>
+                       
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <% } else {%>
+            <h1>No Results</h1>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+

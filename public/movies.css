@@ -1,0 +1,27 @@
+body {
+    background-color: #0e1111;
+}
+
+#addButton {
+    margin-bottom: 1em;
+}
+
+#movieItemBorder {
+    background-color: #232b2b;
+}
+
+#movieItem {
+    background-color: #232b2b;
+}
+
+.strongInfo {
+    color: #b3b3b3;
+}
+
+.info {
+    color: #414a4c;
+}
+
+#searchDB {
+    color: lightgray;
+}

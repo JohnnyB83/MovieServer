@@ -1,0 +1,11 @@
+body {
+    background-color: #0e1111;
+}
+
+#title {
+    color: white;
+}
+
+.userInfo {
+    display: block;
+}

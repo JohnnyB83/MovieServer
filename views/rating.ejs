@@ -1,0 +1,48 @@
+<% include ./partials/header %>
+
+<div class="ui form">
+    <div class="field">
+        <h1 style="text-align: center;">Write a new review - <%=movie.title%></h1>
+        <div style="width: 30%; margin: 25px auto;">
+            <h4 class="ui horizontal divider header">
+                <i class="star icon"></i>
+                  Rating
+            </h4>
+            <div style="text-align: center" class="content stars">
+            <i id="0" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="1" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="2" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="3" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="4" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            </div>
+            <h4 class="ui horizontal divider"></h4>
+            <form action="/movies/<%=movie._id%>/review" method="POST">
+                        <textarea name="review[text]" placeholder="Write review here..."></textarea>
+                        <input id="reviewValue" type="hidden" name="review[stars]" value="" />
+
+                    <button class="ui primary button right floated">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var c = true;
+    function changeStar(x) {
+        for(var i = Number(x.id); i >= 0; i--) {
+            if(i == 0 && c == false) {
+                document.getElementById(String(i)).classList.add("empty");
+                c = !c;
+            }
+            else {
+            document.getElementById(String(i)).classList.remove("empty");
+            }
+        }
+        for(var j = Number(x.id)+1; j <= 4; j++) {
+            document.getElementById(String(j)).classList.add("empty");
+        }
+        document.getElementById("reviewValue").value = Number(x.id)+1;
+    }
+</script>
+
+<% include ./partials/footer %>

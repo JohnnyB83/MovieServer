@@ -1,0 +1,24 @@
+.text.container {
+    margin-top: 20px;
+}
+
+#delete-form {
+    display: inline;
+}
+
+#imdbS {
+    color: lightgray;
+}
+
+body {
+    background-color: black;
+}
+
+#poster {
+    max-height: 75px;
+}
+
+#searchBar {
+    margin-top: 0em;
+    margin-bottom: 0em;
+}

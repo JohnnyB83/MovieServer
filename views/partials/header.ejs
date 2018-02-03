@@ -1,0 +1,50 @@
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" href="/results.css">
+        <title>Movie Results</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.9/semantic.min.js"></script>
+
+    </head>
+    <body>
+        
+        <div class="ui inverted mini menu">
+  <a href="/movies" class="item">
+    Collection
+  </a>
+  <div class="right menu">
+    <div class="item">
+      <div class="ui inverted transparent icon input">
+   		<form id="searchBar" action="/movies/newIMDB" method="POST">
+   			<div class="ui mini icon input">
+  				<input id="imdbS" name="imdbSearch" type="text" placeholder="Search IMDB number...">
+  				   <i class="inverted search link icon"></i>
+			</div>
+		</form>
+      </div>
+    </div>
+    <% if(!currentUser) { %>
+        <div class="item">
+            <a href="/login" class="ui inverted green button"><i class="user circle outline icon"></i>Login</a>
+        </div>
+        <div class="item">
+            <a href="/register" class="ui secondary button"><i class="add user icon"></i>Sign Up!</a>
+        </div>
+    <% } else { %>
+        <div class="item">
+            <div>
+                <% if(currentUser.isAdmin === true) { %>
+                    <i class="unhide icon"></i><%=currentUser.username%>
+                <% } else { %>
+                    <i class="user icon"></i><%=currentUser.username%>
+                <% } %>
+            </div>
+        </div>
+        <div class="item">
+            <a href="/logout" class="ui secondary button"><i class="remove user icon"></i>Logout</a>
+        </div>
+    <% } %>
+  </div>
+</div>

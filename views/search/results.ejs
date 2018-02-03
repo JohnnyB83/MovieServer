@@ -1,0 +1,55 @@
+<% include ../partials/header %>
+
+            <%if(info != 'null') { %>
+            <% if(sort == 'latest') { %>
+            <% info.sort(function(a, b) {return b.year - a.year}); %>
+            <% } else if(sort == 'oldest') { %>
+            <% info.sort(function(a, b) {return a.year - b.year});%>
+            <% } else if(sort == 'IMDB') { %>
+            <% info.sort(function(a, b) {return b.rating - a.rating}); }%>
+            
+   <div class="ui main text container">
+   	<div class="ui huge header">Movie Results</div>
+    <div class="ui top attached segment">
+        <div class="ui divided items">
+            <% info.forEach(function(movie) { %>
+            <div class="item">
+                <div class="image">
+                    <% if(movie.poster == "N/A") { %>
+                        <img id="poster" src="http://www.leveragelms.com/www/market/images/no_image.png">
+                    <% } else { %>
+                        <img src=<%=movie.poster%>>
+                    <% } %>
+                </div>
+                <div class="content">
+                    <% var link = "http:\/\/imdb.com/title/" + movie.imdbid%>
+                    <a class="header" href=<%= link %>><%= movie.title %></a> - <%=movie.year%>
+                    <div class="item">
+                        <p>Genres: <%=movie.genres%></p>
+                    </div>
+                    <div class="item">
+                        <p>Rated: <%=movie.rated%></p>
+                    </div>
+                    <div class="item">
+                        <p>Director: <%=movie.director%></p>
+                    </div>
+                    <div class="item">
+                        <p>IMDB Score: <%=movie.rating%></p>
+                    </div>
+                    <div class="item">
+                        <p>Plot: <%=movie.plot%></p>
+                    </div>
+                    <div class="meta">
+                        <button class="ui right floated basic button small purple">More</button>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+            <% } else {%>
+            <h1>No Results</h1>
+            <% } %>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>
+

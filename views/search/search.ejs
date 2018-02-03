@@ -1,0 +1,35 @@
+<%include ../partials/header %>
+
+<div class="ui main text container">
+    <div class="ui top attached segment">
+        <form class = "ui form" action="/results" method="GET">
+            <h4 class="ui left floated header">Search for a Movie</h4>
+            <h4 class="ui right floated header"><i class="u film icon"></i></h4>
+            <div class="field">
+                <label>Movie Title</label>
+                <input type="text" placeholder="Search" name="search">
+            </div>
+                <div class="two fields">
+                    <div class="field">
+                        <label>Sort By...</label>
+                        <select name="sort" class="ui fluid dropdown">
+                            <option value="">Standard</option>
+                            <option value="latest">Newest to Oldest</option>
+                            <option value="oldest">Oldest to Newest</option>
+                            <option value="IMDB">IMDB Score</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label>Search Location</label>
+                            <select name="type" class="ui fluid dropdown">
+                            <option value="IMDBSearch">IMDB</option>
+                            <option value="DBSearch">Movie</option>
+                        </select>
+                    </div>
+                </div>
+            <input class ="ui basic button blue small" type="submit" value="Search">
+        </form>
+    </div>
+</div>
+
+<%include ../partials/footer %>

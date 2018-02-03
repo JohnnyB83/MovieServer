@@ -1,0 +1,47 @@
+<% include ../partials/header %>
+
+<div class="ui main text container segment">
+    <div class="ui large header">Edit: <%=movie.title%></div>
+    
+    <form class="ui form" action="/movies/<%=movie._id%>?_method=PUT" method="POST">
+        <div class="field">
+            <label>Title</label>
+            <input type="text" name="movie[title]" value="<%=movie.title%>">
+        </div>
+        
+        <div class="field">
+            <label>Image</label>
+            <input type="text" name="movie[image]" value="<%=movie.image%>">
+        </div>
+                
+        <div class="field">
+            <label>Genre</label>
+            <input type="text" name="movie[genre]" value="<%=movie.genre%>">
+        </div>
+        
+        <div class="two fields">
+            <div class="field">
+                <label>Rating</label>
+                <input type="text" name="movie[rating]" value="<%=movie.rating%>">
+            </div>
+            
+            <div class="field">
+                <label>Director</label>
+                <input type="text" name="movie[director]" value="<%=movie.director%>">
+            </div>
+        </div>
+        
+        <div class="field">
+            <label>Path To Movie</label>
+            <input type="text" name="movie[watchPath]" value="<%=movie.watchPath%>">
+        </div>
+        
+        <div class="field">
+            <label>Plot</label>
+            <textarea name="movie[plot]"><%=movie.plot%></textarea>
+        </div>
+        <input class="ui violet basic button" type="submit">
+    </form>
+</div>
+
+<% include ../partials/footer %>

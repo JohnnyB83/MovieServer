@@ -1,0 +1,66 @@
+<% include ../partials/header %>
+
+        <link rel="stylesheet" type="text/css" href="/show.css">
+
+<div id="mainContainer" class="ui main text container segment">
+    <div class="ui huge header centered"><strong><%= movie.title %></strong></div>
+    <div class="ui top attached">
+        <div class="item">
+            <img class="ui centered rounded medium image divided items" src="<%=movie.image%>">
+            <div class="content">
+                <div class="content"><strong>Director: </strong><%=movie.director%></div>
+                <div class="content"><strong>Genre: </strong><%=movie.genre%></div>
+                <div class="content"><strong>IMDB Score: </strong><%=movie.rating%></div>
+            </div>
+            <div class="description">
+                <p class="content"><strong>Plot: </strong><%-movie.plot%></p>
+            </div>
+            <div class="extra">
+                <form id="back" action="/movies/<%=movie._id%>/watch/view" method="GET">
+                    <button class="ui inverted right floated button mini blue">Watch</button>
+                </form>
+                <% if(currentUser && movie.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin === true) { %>
+        	        <form id="edit" action="/movies/<%=movie._id%>/edit">
+        	        	<button class="ui inverted right floated button mini orange">Edit</button>
+        	        </form>
+        	        <form id="delete" action="/movies/<%=movie._id%>?_method=DELETE" method="POST">
+                        <button class="ui right floated button inverted mini red">X</button>
+                    </form>
+                <% } %>
+                <form id="back" action="/movies" method="GET">
+                    <button class="ui inverted left floated button mini green"><center><i class="icon Arrow Left"></center></i></button>
+                </form>
+
+                <br />
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="commentHolder" class="ui secondary text container segment">
+    <div class="item">
+        <% if(isNaN(avgReview) === true) { %>
+            <strong>No ratings yet!</strong>
+        <% } else { %>
+            <strong>Average Rating: <%=avgReview%> Stars</strong>
+        <% } %>
+    </div>
+    <form action="/movies/<%=movie._id%>/review" method="GET">
+        <button class="ui inverted right floated button mini purple">Write a review</button>
+    </form>
+    <br />
+    <% movie.reviews.forEach(function(review) { %>
+        <strong><%=review.author.username%> - <%=review.stars%> Stars</strong>
+        <p class="content"><%=review.text%></p>
+        <% if(currentUser && review.author.id.equals(currentUser._id) || currentUser && currentUser.isAdmin === true) { %>
+            <a href="/movies/<%=movie._id%>/reviews/<%=review._id%>/edit" class="ui inverted button orange mini">Edit</a>
+            <form id="delete-form" action="/movies/<%=movie._id%>/reviews/<%=review._id%>?_method=DELETE" method="POST">
+                <input type="submit" class="ui inverted button red mini" value="Delete">
+            </form>
+            <div class="ui divider"></div>
+        <% } %>
+    <% }) %>
+
+</div>
+
+<% include ../partials/footer %>

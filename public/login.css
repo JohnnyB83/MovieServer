@@ -1,0 +1,8 @@
+body {
+    background-color: #0e1111;
+}
+
+#loginForm {
+    margin-top: 5em;
+    max-width: 33%;
+}

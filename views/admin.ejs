@@ -1,0 +1,45 @@
+<% include partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/watch.css">
+
+<div class="ui main text container">
+    <div class="ui top attached segment">
+        <h4 class="header">Registered Users</h4>
+        <div class="ui divider"></div>
+        <% users.forEach(function(user) { %>
+            <div class="ui grid">
+                <div class="four wide column">
+                
+                <% if(user.isAdmin === true) { %>
+                    <span class="item"><i class="icon unhide"></i></span><strong><%=user.username%></strong>
+                <% } else { %>
+                    <span class="item"><i class="icon user"></i></span><strong><%=user.username%></strong>
+                    </div>
+                    <div class="four wide column">
+                    <form action="/upkeep/<%=user._id%>?_method=PUT" method="POST">
+                        <button class="ui mini button green">Give Admin</button>
+                    </form>
+                <% } %>
+                </div>
+                    <div class="four wide column"></div>
+                    <div class="four wide column">
+                <% if(currentUser.username != user.username) { %>
+                    <form action="/upkeep/<%=user._id%>?_method=DELETE" method="POST">
+                        <button class="ui mini button red">Delete User</button>
+                    </form>
+                <% } %>
+                
+                <% if(currentUser.username != user.username && user.isAdmin === true) { %>
+                    <form action="/upkeep/<%=user._id%>?_method=PUT" method="POST">
+                        <button class="ui mini button red">Remove Admin</button>
+                    </form>
+                <% } %>
+                </div>
+            </div>
+        <div class="ui divider"></div>
+        <% }) %>
+    </div>
+</div>
+
+
+<% include partials/footer %>

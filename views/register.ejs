@@ -1,0 +1,22 @@
+<% include partials/header %>
+
+<link rel="stylesheet" type="text/css" href="/login.css">
+
+<div class="ui grid">
+    <div class="three column row">
+        <div class="column"></div>
+        <div id="loginForm" class="column">
+            <form class="ui middle aligned inverted form" action="/register" method="POST">
+                <h4 class="ui didviding header inverted">Sign Up</h4>
+                    <div class="field"><input type="text" name="username" placeholder="Username"></div>
+                    <div class="field"><input type="password" name="password" placeholder="Password"></div>
+                    <div class="field"><input type="text" name="email" placeholder="Email"></div>
+                    <div class="field"><input type="password" name="joinCode" placeholder="Invite Code"></div>
+                    <button type="submit" class="ui inverted green button">Request</button>
+            </form>
+        </div>
+        <div class="column"></div>
+    </div>
+</div>
+
+<% include partials/footer %>
