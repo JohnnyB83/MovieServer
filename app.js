@@ -37,8 +37,16 @@ app.use(methodOverride("_method"));
 //Mongoose setup local
 //mongoose.connect("mongodb://localhost/movie");
 
+//Read credential file for username and passsord to db
+let rawData = fs.readFileSync('credentials.json');
+let parsedRawData = JSON.parse(rawData);
+let dbUser = parsedRawData.credentials.mlab.username;
+let dbPassword = parsedRawData.credentials.mlab.password;
+console.log(dbUser);
+console.log(dbPassword);
+
 //Mongoose setup external
-mongoose.connect("mongodb://<DB info>@ds117758.mlab.com:17758/movies");
+mongoose.connect("mongodb://" + dbUser + ":" + dbPassword + "@ds117758.mlab.com:17758/movies", { useMongoClient: true });
 
 
 app.use(function(req, res, next) {
