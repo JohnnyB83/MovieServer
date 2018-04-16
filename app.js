@@ -42,8 +42,6 @@ let rawData = fs.readFileSync('credentials.json');
 let parsedRawData = JSON.parse(rawData);
 let dbUser = parsedRawData.credentials.mlab.username;
 let dbPassword = parsedRawData.credentials.mlab.password;
-console.log(dbUser);
-console.log(dbPassword);
 
 //Mongoose setup external
 mongoose.connect("mongodb://" + dbUser + ":" + dbPassword + "@ds117758.mlab.com:17758/movies", { useMongoClient: true });
