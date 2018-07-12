@@ -10,11 +10,18 @@ body {
     color: #b3b3b3;
 }
 
-label {
-    color: #414a4c;
+#uploadFile {
+    color: #b3b3b3;
 }
 
-input [type=textarea] {
-    background-color: #232b2b;
+#disk {
+    color: #b3b3b3;
 }
+
+#plotText {
+    background-color: #232b2b;
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+}
+
 
