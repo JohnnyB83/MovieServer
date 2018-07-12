@@ -1,46 +1,63 @@
 <% include ../partials/header %>
 
-<div class="ui main text container segment">
-    <div class="ui large header">Edit: <%=movie.title%></div>
+<link rel="stylesheet" type="text/css" href="/newMovie.css">
+
+<div id="newForm" class="ui main text container segment">
+    
+    <div style="color: #b3b3b3" class="ui large header">Edit: <%=movie.title%></div>
     
     <form class="ui form" action="/movies/<%=movie._id%>?_method=PUT" method="POST">
         <div class="field">
-            <label>Title</label>
-            <input type="text" name="movie[title]" value="<%=movie.title%>">
+            <label style="color: #b3b3b3">Title</label>
+            <div class="ui inverted transparent input">
+                    <input style="color: #b3b3b3" class="inverted" type="text" name="movie[title]" value="<%=movie.title%>">
+            </div>
         </div>
         
         <div class="field">
-            <label>Image</label>
-            <input type="text" name="movie[image]" value="<%=movie.image%>">
+            <label style="color: #b3b3b3">Image</label>
+            <div class="ui inverted transparent input">
+                    <input style="color: #b3b3b3" class="inverted" type="text" name="movie[image]" value="<%=movie.image%>">
+            </div>
         </div>
                 
         <div class="field">
-            <label>Genre</label>
-            <input type="text" name="movie[genre]" value="<%=movie.genre%>">
+            <label style="color: #b3b3b3">Genre</label>
+            <div class="ui inverted transparent input">
+                    <input style="color: #b3b3b3" class="inverted" type="text" name="movie[genre]" value="<%=movie.genre%>">
+            </div>
         </div>
         
         <div class="two fields">
             <div class="field">
-                <label>Rating</label>
-                <input type="text" name="movie[rating]" value="<%=movie.rating%>">
+                <label style="color: #b3b3b3">Rating</label>
+                <div class="ui inverted transparent input">
+                        <input style="color: #b3b3b3" class="inverted" type="text" name="movie[rating]" value="<%=movie.rating%>">
+                </div>
             </div>
             
             <div class="field">
-                <label>Director</label>
-                <input type="text" name="movie[director]" value="<%=movie.director%>">
+                <label style="color: #b3b3b3">Director</label>
+                <div class="ui inverted transparent input">
+                        <input style="color: #b3b3b3" class="inverted" type="text" name="movie[director]" value="<%=movie.director%>">
+                </div>
             </div>
         </div>
         
         <div class="field">
-            <label>Path To Movie</label>
-            <input type="text" name="movie[watchPath]" value="<%=movie.watchPath%>">
+            <label style="color: #b3b3b3">Path To Movie</label>
+            <div class="ui inverted transparent input">
+                    <input style="color: #b3b3b3" class="inverted" type="text" name="movie[watchPath]" value="<%=movie.watchPath%>">
+            </div>
         </div>
         
         <div class="field">
-            <label>Plot</label>
-            <textarea name="movie[plot]"><%=movie.plot%></textarea>
+            <label style="color: #b3b3b3">Plot</label>
+            <div class="ui inverted transparent input">
+                    <textarea id="plotText" name="movie[plot]"><%=movie.plot%></textarea>
+            </div>
         </div>
-        <input class="ui violet basic button" type="submit">
+        <input class="ui violet inverted button" type="submit">
     </form>
 </div>
 
