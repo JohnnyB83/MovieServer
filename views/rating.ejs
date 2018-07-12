@@ -1,26 +1,27 @@
 <% include ./partials/header %>
 
+<link rel="stylesheet" type="text/css" href="/review.css">
+
 <div class="ui form">
     <div class="field">
-        <h1 style="text-align: center;">Write a new review - <%=movie.title%></h1>
+        <h1 id="headerText" style="text-align: center;">Write a new review - <%=movie.title%></h1>
         <div style="width: 30%; margin: 25px auto;">
             <h4 class="ui horizontal divider header">
-                <i class="star icon"></i>
-                  Rating
+                  <span class="text">Rating</span>
             </h4>
             <div style="text-align: center" class="content stars">
-            <i id="0" class="empty star icon" onMouseOver="changeStar(this)"></i>
-            <i id="1" class="empty star icon" onMouseOver="changeStar(this)"></i>
-            <i id="2" class="empty star icon" onMouseOver="changeStar(this)"></i>
-            <i id="3" class="empty star icon" onMouseOver="changeStar(this)"></i>
-            <i id="4" class="empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="0" class="text empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="1" class="text empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="2" class="text empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="3" class="text empty star icon" onMouseOver="changeStar(this)"></i>
+            <i id="4" class="text empty star icon" onMouseOver="changeStar(this)"></i>
             </div>
             <h4 class="ui horizontal divider"></h4>
             <form action="/movies/<%=movie._id%>/review" method="POST">
-                        <textarea name="review[text]" placeholder="Write review here..."></textarea>
+                        <textarea id="plotText" name="review[text]" placeholder="Write review here..."></textarea>
                         <input id="reviewValue" type="hidden" name="review[stars]" value="" />
 
-                    <button class="ui primary button right floated">Submit</button>
+                    <button id="submitReview" class="ui violet inverted button right floated">Submit</button>
             </form>
         </div>
     </div>

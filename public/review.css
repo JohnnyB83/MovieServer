@@ -1,0 +1,26 @@
+body {
+    background-color: #0e1111;
+}
+
+#headerText {
+    color: white;
+}
+
+.text {
+    color: #b3b3b3;
+}
+
+#newForm {
+    background-color: #232b2b;
+}
+
+#plotText {
+    background-color: #232b2b;
+    color: #b3b3b3;
+    border: 1px solid #b3b3b3;
+}
+
+#submitReview {
+    margin-top: 5px;
+}
+
