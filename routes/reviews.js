@@ -47,6 +47,7 @@ router.post("/movies/:id/review", middleware.isLoggedIn, function(req, res) {
 
 //Delete route
 router.delete("/movies/:id/reviews/:review_id", function(req, res) {
+console.log(typeof req.params.review_id + ' | ' + req.params.review_id);
     Review.findByIdAndRemove(req.params.review_id, function(err) {
         if(err) {
             console.log(err);
