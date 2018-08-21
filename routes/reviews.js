@@ -18,7 +18,8 @@ router.get("/movies/:id/review", function(req, res) {
     });
 });
 
-router.post("/movies/:id/review", function(req, res) {
+//New review route
+router.post("/movies/:id/review", middleware.isLoggedIn, function(req, res) {
     Movie.findById(req.params.id, function(err, foundMovie) {
         if(err) {
             console.log(err);
@@ -33,12 +34,12 @@ router.post("/movies/:id/review", function(req, res) {
                     review.author.id = req.user._id;
                     review.author.username = req.user.username;
                     review.save();
-                    foundMovie.reviews.push(review);
-                    foundMovie.save();
-                    res.redirect("/movies/" + foundMovie._id);
+                    foundMovie.reviews.push(review.id);
+                    foundMovie.save((err) => {if(err) {console.log(err)} });
                 }
             });
         }
+	res.redirect("/movies/" + foundMovie._id);
     });
 });
 

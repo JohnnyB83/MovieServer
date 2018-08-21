@@ -4,6 +4,7 @@ var express = require("express");
 var app = express();
 var request = require("request");
 var mongoose = require("mongoose");
+mongoose.plugin(schema => { schema.options.usePushEach = true });
 var bodyParser = require("body-parser");
 var methodOverride = require("method-override");
 var passport = require("passport");
@@ -45,7 +46,6 @@ let dbPassword = parsedRawData.credentials.mlab.password;
 
 //Mongoose setup external
 mongoose.connect("mongodb://" + dbUser + ":" + dbPassword + "@ds117758.mlab.com:17758/movies", { useMongoClient: true });
-
 
 app.use(function(req, res, next) {
     res.locals.currentUser = req.user;

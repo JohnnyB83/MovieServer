@@ -146,6 +146,7 @@ router.post("/movies/newIMDB", middleware.isLoggedIn, function(req, res) {
 router.get("/movies/:id", middleware.isLoggedIn, function(req, res) {
     Movie.findById(req.params.id).populate("reviews").exec(function(err, foundMovie) {
         if(err) {
+	    console.log(err);
             res.redirect("/movies");
         } else {
             var totalReviews = foundMovie.reviews.length;
